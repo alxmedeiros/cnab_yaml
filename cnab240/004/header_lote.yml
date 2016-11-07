@@ -1,0 +1,195 @@
+# Registro Header de Lote
+
+codigo_banco:
+  pos: [1, 3]
+  picture: '9(3)'
+
+lote_servico:
+  # Lote de Serviço
+  # Número seqüencial para identificar cada lote de serviço.
+  # Preencher com '0001' para o primeiro lote do arquivo. Para os demais: número do lote anterior
+  # acrescido de 1. Deve ser o mesmo número dentro do lote. O número não poderá ser repetido dentro
+  # do arquivo.
+  # Se registro for Header do Arquivo = '0000'
+  # Se registro for Trailer do Arquivo = '9999'
+  pos: [4, 7]
+  picture: '9(4)'
+
+tipo_registro:
+  # Código adotado pela FEBRABAN para identificar o tipo de registro.
+  # '1' = Header de Lote
+  pos: [8, 8]
+  picture: '9(1)'
+  default: '1'
+3
+tipo_operacao:
+  # Tipo de Operação
+  # Código adotado pela FEBRABAN para identificar a transação que será realizada com os registros
+  # detalhe do lote. Deve constar apenas um tipo por lote:
+  # 'C'  =  Lançamento a Crédito
+  # 'D'  =  Lançamento a Débito
+  # 'E'  =  Extrato para Conciliação
+  # 'I'   =  Informações de Títulos Capturados do Próprio Banco
+  # 'R'  =  Arquivo Remessa
+  # 'T'  =  Arquivo Retorno
+  pos: [9, 9]
+  picture: 'X(1)'
+
+tipo_servico:
+  # Tipo de Serviço
+  # Código adotado pela FEBRABAN para indicar o tipo de serviço / produto contido no arquivo / lote:
+  # '01'  =  Cobrança
+  # '02'  =  Cobrança sem Papel
+  # '03'  =  Bloqueto Eletrônico
+  # '04'  =  Conciliação Bancária
+  # '05'  =  Débitos
+  # '10'  =  Pagamento Dividendos
+  # '20'  =  Pagamento Fornecedor
+  # '29'  =  Alegação do Sacado
+  # '30'  =  Pagamento Salários
+  # '50'  =  Pagamento Sinistros Segurados
+  # '60'  =  Pagamento Despesas Viajante em Trânsito
+  # '70'  =  Pagamento Autorizado
+  # '75'  =  Pagamento Credenciados
+  # '80'  =  Pagamento Representantes / Vendedores Autorizados
+  # '90'  =  Pagamento Benefícios
+  # '98'  =  Pagamentos Diversos
+  # Padrão: '01'
+  pos: [10, 11]
+  picture: '9(2)'
+  default: '01'
+
+forma_lancamento:
+  # Forma de Lançamento
+  # '01'  =  Crédito em Conta Corrente
+  # '02'  =  Cheque Pagamento / Administrativo
+  # '03'  =  DOC
+  # '04'  =  Cartão Salário      (somente para Tipo de Serviço = '30')
+  # '05'  =  Crédito em Conta Poupança
+  # '10'  =  OP à Disposição
+  # '20'  =  Pagamento com Autenticação
+  # '30'  =  Liquidação de Títulos do Próprio Banco
+  # '31'  =  Pagamento de Títulos de Outros Bancos
+  # '40'  =  Extrato de Conta Corrente
+  # '50'  =  Débito em Conta Corrente
+  # Padrão: 00
+  pos: [12, 13]
+  picture: '9(2)'
+  default: '00'
+
+versao_layout_lote:
+  # Código adotado pela FEBRABAN para identificar qual a versão de layout do arquivo encaminhado.
+  pos: [14, 16]
+  picture: '9(3)'
+  default: '030'
+
+uso_exclusivo_febraban_01:
+  # Texto de observações destinado para uso exclusivo da FEBRABAN. Preencher com Brancos.
+  pos: [17, 17]
+  picture: 'X(1)'
+  default: ''
+
+codigo_inscricao:
+  # Código que identifica o tipo de inscrição da Empresa ou Pessoa Física.
+  # '1' = CPF
+  # '2' = CGC / CNPJ
+  pos: [18, 18]
+  picture: '9(1)'
+
+numero_inscricao:
+  # Informar o número de inscrição da Empresa (CNPJ) ou Pessoa Física (CPF).
+  pos: [19, 32]
+  picture: '9(14)'
+
+codigo_convenio:
+  # Código do Convênio no Banco (Código do Cedente)
+  # Código fornecido pela CAIXA, através da agência de relacionamento do cliente, específico para
+  # identificar determinados tipos de serviços / produtos.
+  # O campo CÓDIGO DO CEDENTE deverá ser preenchido da seguinte forma:
+  # AAAAOOOCCCCCCCCD, onde:
+  # AAAA = código da Agência CAIXA de relacionamento do cliente / cedente
+  # OOO = Operação
+  # CCCCCCCC = Número da Conta Corrente ou seqüencial
+  # D = Dígito Verificador
+  pos: [33, 52]
+  picture: 'X(20)'
+
+agencia:
+  # Código da Agência mantenedora da conta, fornecido pela CAIXA.
+  pos: [53, 57]
+  picture: '9(5)'
+
+agencia_dv:
+  # Dígito Verificador da Agência mantendedora da conta, fornecido pela CAIXA.
+  pos: [58, 58]
+  picture: 'X(1)'
+
+conta:
+  pos: [59, 70]
+  picture: '9(12)'
+
+conta_dv:
+  pos: [71, 71]
+  picture: 'X(1)'
+
+agencia_mais_conta_dv:
+  pos: [72, 72]
+  picture: 'X(1)'
+
+nome_empresa:
+  # Nome que identifica a pessoa, física ou jurídica, a qual se quer fazer referência
+  pos: [73, 102]
+  picture: 'X(30)'
+
+mensagem_1:
+  # Mensagem 1 / 2
+  # Texto referente a mensagens que serão impressas, em todos os bloquetos referentes ao mesmo lote, no
+  # corpo de instruções da ficha de compensação e do recibo do sacado do bloqueto.
+  # Estes campos não serão utilizados no arquivo retorno.
+  pos: [103, 142]
+  picture: 'X(40)'
+  default: ''
+
+logradouro:
+  pos: [143, 172]
+  picture: 'X(30)'
+  default: ''
+
+numero:
+  pos: [173, 177]
+  picture: '9(5)'
+
+complemento:
+  pos: [178, 192]
+  picture: 'X(15)'
+  default: ''
+
+cidade:
+  pos: [193, 212]
+  picture: 'X(20)'
+  default: ''
+
+cep:
+  pos: [213, 217]
+  picture: '9(5)'
+  default: ''
+
+complemento_cep:
+  pos: [218, 220]
+  picture: 'X(3)'
+  default: ''
+
+estado:
+  pos: [221, 222]
+  picture: 'X(2)'
+  default: ''
+
+uso_exclusivo_febraban_01:
+  pos: [223, 230]
+  picture: 'X(8)'
+  default: ''
+
+codigos_ocorrencias_retorno:
+  pos: [231, 240]
+  picture: 'X(10)'
+  default: ''
